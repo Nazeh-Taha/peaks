@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Container from "./components/Container";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Article from "./pages/Article";
+import BookMarks from "./pages/BookMarks";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        minHeight: "100vh",
+      }}
+    >
+      <Header />
+      <Container>
+        <Content />
+      </Container>
+      <Footer />
     </div>
   );
+}
+
+function Content() {
+  const [contentType, setContentType] = useState("home");
+
+  switch (contentType) {
+    case "home":
+      return <Home />;
+    case "article":
+      return <Article />;
+    case "Bookmarks":
+      return <BookMarks />;
+    default:
+      return null;
+  }
 }
 
 export default App;

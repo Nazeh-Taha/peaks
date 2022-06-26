@@ -1,0 +1,11 @@
+export const blueColor = "#09357B";
+export const liteBlueColor = "#2153a3";
+export const wightColor = "#fff";
+export const placeholderColor = "#7796c6";
+export const titleCardColor = "#09357B";
+export const greenBoard = "#388E3C";
+export const redBoard = "#388E3C";
+export const yellowBoard = "#FFCA28";
+export const blueBoard = "#2196F3";
+export const apiKey = "cf480511-5315-4c7d-8db4-801fa82b4ad9";
+export const apiUrlPrefix = "https://content.guardianapis.com";
