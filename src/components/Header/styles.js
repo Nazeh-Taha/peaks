@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-import { blueColor } from "../../variables";
+import { blueColor } from "../../variables/colorsVariables";
 export const useStyles = makeStyles(() => ({
   headerContainer: {
     width: "100%",

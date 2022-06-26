@@ -1,5 +1,5 @@
-import { endPointCallCreator } from "../utils";
-import { apiKey, apiUrlPrefix } from "../variables";
+import { endPointCallCreator } from "../utils/helpers";
+import { urlKey, urlPrefix } from "../variables/urlVariables";
 
 export const getHomeNews = async ({
   section = ["news"],
@@ -8,7 +8,7 @@ export const getHomeNews = async ({
   size = 5,
 }) =>
   await endPointCallCreator({
-    url: `${apiUrlPrefix}/search?section=${section.join(
+    url: `${urlPrefix}/search?section=${section.join(
       "|"
-    )}&order-by=${orderBy}&show-elements=image&page=${page}&page-size=${size}&q=stories&api-key=${apiKey}`,
+    )}&order-by=${orderBy}&show-elements=image&page=${page}&page-size=${size}&q=stories&api-key=${urlKey}`,
   });

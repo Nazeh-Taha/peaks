@@ -1,7 +1,7 @@
 import { useStyles } from "./styles";
 import searchIcon from "../../assets/icons/search-icon.svg";
 import { useRef, useState } from "react";
-import { useOutside } from "../../hooks";
+import { useOutside } from "../../utils/hooks";
 
 function SearchBox() {
   const classes = useStyles();

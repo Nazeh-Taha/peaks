@@ -1,5 +1,9 @@
 import { makeStyles } from "@mui/styles";
-import { wightColor, liteBlueColor, placeholderColor } from "../../variables";
+import {
+  wightColor,
+  liteBlueColor,
+  placeholderColor,
+} from "../../variables/colorsVariables";
 
 export const useStyles = makeStyles(() => ({
   searchContainer: {

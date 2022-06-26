@@ -7,5 +7,3 @@ export const greenBoard = "#388E3C";
 export const redBoard = "#388E3C";
 export const yellowBoard = "#FFCA28";
 export const blueBoard = "#2196F3";
-export const apiKey = "cf480511-5315-4c7d-8db4-801fa82b4ad9";
-export const apiUrlPrefix = "https://content.guardianapis.com";
