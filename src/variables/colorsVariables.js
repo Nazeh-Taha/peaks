@@ -1,4 +1,5 @@
 export const blueColor = "#09357B";
+export const cardColor = "#0D47A1";
 export const liteBlueColor = "#2153a3";
 export const wightColor = "#fff";
 export const placeholderColor = "#7796c6";

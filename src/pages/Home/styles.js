@@ -1,6 +1,21 @@
 import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles(() => ({
+  titleHeader: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    marginTop: 40,
+    "& h1": {
+      margin: "5px 0",
+    },
+  },
+  flexBoxContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 20,
+  },
   topStoriesContainer: {
     display: "grid",
     gap: 30,
@@ -26,7 +41,6 @@ export const useStyles = makeStyles(() => ({
   lastStoriesContainer: {
     display: "grid",
     gap: 30,
-    marginBottom: 30,
     gridTemplateColumns: "repeat(3,  1fr)",
     "@media (max-width:780px)": {
       gridTemplateColumns: "repeat(2,  1fr)",
@@ -42,5 +56,9 @@ export const useStyles = makeStyles(() => ({
         gridColumn: "span 1",
       },
     },
+  },
+  sportTitle: {
+    marginTop: 50,
+    marginBottom: 30,
   },
 }));

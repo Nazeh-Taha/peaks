@@ -18,5 +18,17 @@ export async function endPointCallCreator({ url = "", method = "GET" } = {}) {
       error: false,
       errorMessage: "",
       payload: data.response,
+    }))
+    .catch(() => ({
+      loading: false,
+      error: true,
+      errorMessage: "Something went wrong",
+      payload: null,
     }));
 }
+
+export const extractContent = (s) => {
+  const span = document.createElement("span");
+  span.innerHTML = s;
+  return span.textContent || span.innerText;
+};
