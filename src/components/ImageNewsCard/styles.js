@@ -14,6 +14,7 @@ export const useStyles = makeStyles(() => ({
     justifyContent: "center",
     minHeight: 250,
     position: "relative",
+    cursor: "pointer",
   },
   fullImage: {
     width: "100%",

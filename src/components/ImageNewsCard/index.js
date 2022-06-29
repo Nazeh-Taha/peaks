@@ -2,7 +2,13 @@ import { useStyles } from "./styles";
 import emptyImage from "../../assets/images/Logo_White.png";
 function ImageNewsCard(props) {
   const classes = useStyles();
-  const { cardHigh = "default", cardTitle, cardImage, cardDescription } = props;
+  const {
+    cardHigh = "default",
+    cardTitle,
+    cardImage,
+    cardDescription,
+    handleClick,
+  } = props;
   const cardHighPx = { sm: 250, lg: 350, default: "auto" };
 
   return (
@@ -11,6 +17,7 @@ function ImageNewsCard(props) {
       style={{
         height: cardHighPx[cardHigh],
       }}
+      onClick={handleClick}
     >
       <img
         src={cardImage ? cardImage : emptyImage}

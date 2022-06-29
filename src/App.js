@@ -31,17 +31,24 @@ function App() {
 }
 
 function Content() {
-  const [state] = useCustomContext();
+  const [state, dispatch] = useCustomContext();
+
+  function handleOpenArticle(articleId) {
+    dispatch({
+      type: "goToArticlePage",
+      payload: articleId,
+    });
+  }
 
   switch (state.contentType) {
     case "home":
-      return <Home />;
+      return <Home handleOpenArticle={handleOpenArticle} />;
     case "article":
       return <Article />;
     case "bookmarks":
-      return <BookMarks />;
+      return <BookMarks handleOpenArticle={handleOpenArticle} />;
     case "search":
-      return <Search />;
+      return <Search handleOpenArticle={handleOpenArticle} />;
     default:
       return null;
   }

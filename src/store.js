@@ -2,6 +2,7 @@ import { useContext, createContext, useReducer } from "react";
 export const appState = {
   searchText: "",
   contentType: "home",
+  articleId: "",
 };
 
 export function appReducer(state, action) {
@@ -21,6 +22,12 @@ export function appReducer(state, action) {
       return {
         ...state,
         contentType: "search",
+      };
+    case "goToArticlePage":
+      return {
+        ...state,
+        contentType: "article",
+        articleId: action.payload,
       };
     default:
       throw new Error();

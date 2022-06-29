@@ -52,7 +52,7 @@ export const useStyles = makeStyles(() => ({
       gridTemplateColumns: "repeat(2,  1fr)",
     },
     "@media (max-width:500px)": {
-      gridTemplateColumns: "repeat(1,  1fr)",
+      gridTemplateColumns: "1fr",
     },
     "& div:nth-child(1)": {
       "@media (max-width:780px)": {

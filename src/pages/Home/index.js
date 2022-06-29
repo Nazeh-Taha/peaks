@@ -9,7 +9,7 @@ import { useStyles } from "./styles";
 import { useHomeReducer } from "./reducer";
 import { extractContent } from "../../utils/helpers";
 
-function Home() {
+function Home({ handleOpenArticle }) {
   const classes = useStyles();
   const [state, dispatch] = useHomeReducer();
 
@@ -82,23 +82,27 @@ function Home() {
                       index === 0 ? 300 : 100
                     )}
                     key={news.id}
+                    handleClick={() => handleOpenArticle(news.id)}
                   />
                 );
               } else {
                 return (
-                  <TitleNewsCard cardTitle={news.webTitle} key={news.id} />
+                  <div onClick={() => handleOpenArticle(news.id)} key={news.id}>
+                    <TitleNewsCard cardTitle={news.webTitle} />
+                  </div>
                 );
               }
             })}
           </div>
           <div className={classes.lastStoriesContainer}>
             {secondTopNews.map((news) => (
-              <ImageNewsCard
-                cardHigh={"lg"}
-                cardTitle={news.webTitle}
-                cardImage={news?.fields?.thumbnail}
-                key={news.id}
-              />
+              <div onClick={() => handleOpenArticle(news.id)} key={news.id}>
+                <ImageNewsCard
+                  cardHigh={"lg"}
+                  cardTitle={news.webTitle}
+                  cardImage={news?.fields?.thumbnail}
+                />
+              </div>
             ))}
           </div>
         </section>
@@ -110,13 +114,17 @@ function Home() {
       ) : (
         <section className={classes.lastStoriesContainer}>
           {sportsNews.map((news) => (
-            <ImageNewsCard
-              cardHigh={"lg"}
-              cardTitle={news.webTitle}
-              cardImage={news?.fields?.thumbnail}
-              cardDescription={extractContent(news?.fields?.body).slice(0, 100)}
-              key={news.id}
-            />
+            <div onClick={() => handleOpenArticle(news.id)} key={news.id}>
+              <ImageNewsCard
+                cardHigh={"lg"}
+                cardTitle={news.webTitle}
+                cardImage={news?.fields?.thumbnail}
+                cardDescription={extractContent(news?.fields?.body).slice(
+                  0,
+                  100
+                )}
+              />
+            </div>
           ))}
         </section>
       )}

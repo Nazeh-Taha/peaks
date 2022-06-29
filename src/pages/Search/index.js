@@ -9,7 +9,7 @@ import { extractContent } from "../../utils/helpers";
 import ImageNewsCard from "../../components/ImageNewsCard";
 import { useDebounce } from "../../utils/hooks";
 
-function Search() {
+function Search({ handleOpenArticle }) {
   const classes = useStyles();
   const [state, dispatch] = useSearchReducer();
   const [appState] = useCustomContext();
@@ -58,13 +58,17 @@ function Search() {
       ) : (
         <section className={classes.searchResultContainer}>
           {searchNews.map((news) => (
-            <ImageNewsCard
-              cardHigh={"lg"}
-              cardTitle={news.webTitle}
-              cardImage={news?.fields?.thumbnail}
-              cardDescription={extractContent(news?.fields?.body).slice(0, 100)}
-              key={news.id}
-            />
+            <div onClick={() => handleOpenArticle(news.id)} key={news.id}>
+              <ImageNewsCard
+                cardHigh={"lg"}
+                cardTitle={news.webTitle}
+                cardImage={news?.fields?.thumbnail}
+                cardDescription={extractContent(news?.fields?.body).slice(
+                  0,
+                  100
+                )}
+              />
+            </div>
           ))}
         </section>
       )}

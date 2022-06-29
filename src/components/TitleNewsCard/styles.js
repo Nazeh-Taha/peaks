@@ -12,5 +12,6 @@ export const useStyles = makeStyles(() => ({
     borderBottom: `3px solid ${greenBoard}`,
     color: wightColor,
     padding: 10,
+    cursor: "pointer",
   },
 }));
