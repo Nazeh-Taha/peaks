@@ -6,9 +6,10 @@ export const getHomeNews = async ({
   orderBy = "newest",
   page = 1,
   size = 8,
+  searchTerm = "",
 } = {}) =>
   await endPointCallCreator({
     url: `/search?section=${section.join(
       "|"
-    )}&order-by=${orderBy}&show-fields=thumbnail,body&page=${page}&page-size=${size}&api-key=${urlKey}`,
+    )}&order-by=${orderBy}&q=${searchTerm}&show-fields=thumbnail,body&page=${page}&page-size=${size}&api-key=${urlKey}`,
   });

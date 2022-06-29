@@ -12,6 +12,7 @@ import { extractContent } from "../../utils/helpers";
 function Home() {
   const classes = useStyles();
   const [state, dispatch] = useHomeReducer();
+
   const {
     firstTopNews,
     secondTopNews,
@@ -78,7 +79,7 @@ function Home() {
                     cardImage={news?.fields?.thumbnail}
                     cardDescription={extractContent(news?.fields?.body).slice(
                       0,
-                      index === 0 ? 200 : 100
+                      index === 0 ? 300 : 100
                     )}
                     key={news.id}
                   />

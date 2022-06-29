@@ -5,7 +5,6 @@ function SelectInput({ selectValue, handleChangeSelect }) {
   const list = [
     { value: "newest", title: "Newest first" },
     { value: "oldest", title: "Oldest first" },
-    { value: "relevance", title: "Most Popular" },
   ];
 
   return (

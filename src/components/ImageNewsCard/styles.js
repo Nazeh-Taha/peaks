@@ -20,8 +20,8 @@ export const useStyles = makeStyles(() => ({
     height: "100%",
   },
   emptyImage: {
-    width: 180,
-    height: 150,
+    width: "30%",
+    height: "20%",
   },
   titleContainer: {
     backgroundColor: "rgba(9, 53, 123, 0.9)",

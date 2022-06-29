@@ -3,7 +3,7 @@ import searchIcon from "../../assets/icons/search-icon.svg";
 import { useRef, useState } from "react";
 import { useOutside } from "../../utils/hooks";
 
-function SearchBox() {
+function SearchBox({ searchText, handleChangeSearchText }) {
   const classes = useStyles();
   const textInput = useRef(null); // search input
   const textContainer = useRef(null); // search container
@@ -15,8 +15,10 @@ function SearchBox() {
   };
 
   const handleFocusOut = () => {
-    setSearchIsOpen(false);
-    textInput.current.blur();
+    if (!searchText) {
+      setSearchIsOpen(false);
+      textInput.current.blur();
+    }
   };
 
   useOutside(textContainer, handleFocusOut); // close search when clicked outside
@@ -28,7 +30,12 @@ function SearchBox() {
       }`}
       ref={textContainer}
     >
-      <input placeholder="Search all news" ref={textInput} />
+      <input
+        placeholder="Search all news"
+        ref={textInput}
+        value={searchText}
+        onChange={handleChangeSearchText}
+      />
       <img src={searchIcon} alt="Search" onClick={handleSearchClick} />
     </div>
   );

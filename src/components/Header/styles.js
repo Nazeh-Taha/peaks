@@ -10,6 +10,7 @@ export const useStyles = makeStyles(() => ({
     display: "flex",
     alignItems: "center",
     paddingTop: "3%",
+    cursor: "pointer",
     "& img": {
       width: "15%",
     },

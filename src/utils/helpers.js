@@ -13,12 +13,23 @@ export async function endPointCallCreator({ url = "", method = "GET" } = {}) {
         payload: null,
       };
     })
-    .then((data) => ({
-      loading: false,
-      error: false,
-      errorMessage: "",
-      payload: data.response,
-    }))
+    .then((data) => {
+      if (data.response.status === "ok") {
+        return {
+          loading: false,
+          error: false,
+          errorMessage: "",
+          payload: data.response,
+        };
+      } else {
+        return {
+          loading: false,
+          error: true,
+          errorMessage: data.response.message,
+          payload: data.response,
+        };
+      }
+    })
     .catch(() => ({
       loading: false,
       error: true,
