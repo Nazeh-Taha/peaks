@@ -20,8 +20,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         isBookMark: !state.isBookMark,
+        toastIsOpen: true,
       };
-
+    case "closeToast":
+      return {
+        ...state,
+        toastIsOpen: false,
+      };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
@@ -32,6 +37,7 @@ export const useArticleReducer = () => {
     article: { fields: {} },
     loading: true,
     isBookMark: false,
+    toastIsOpen: false,
   });
   return [state, dispatch];
 };

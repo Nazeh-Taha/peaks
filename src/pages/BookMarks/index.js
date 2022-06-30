@@ -64,6 +64,7 @@ function BookMarks({ handleOpenArticle }) {
                   0,
                   100
                 )}
+                type={news?.sectionId}
               />
             </div>
           ))}

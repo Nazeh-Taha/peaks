@@ -7,13 +7,14 @@ import { useCustomContext } from "../../App";
 import Loader from "../../components/Loader";
 import emptyImage from "../../assets/images/Logo_White.png";
 import { useLocalStorage } from "../../utils/hooks";
+import ToastMessage from "../../components/ToastMessage";
 
 function Article() {
   const classes = useStyles();
   const [state, dispatch] = useArticleReducer();
   const [ids, setIdes] = useLocalStorage("bookmarks", []);
   const [appState] = useCustomContext();
-  const { article, loading, isBookMark } = state;
+  const { article, loading, isBookMark, toastIsOpen } = state;
   const { articleId } = appState;
   const { fields, webPublicationDate, webTitle } = article;
 
@@ -38,7 +39,11 @@ function Article() {
       ? setIdes(ids.filter((item) => item !== id))
       : setIdes([...ids, id]);
   }
-
+  function handleCloseToastMessage() {
+    dispatch({
+      type: "closeToast",
+    });
+  }
   return (
     <>
       {loading ? (
@@ -69,6 +74,11 @@ function Article() {
               </div>
             </section>
           ) : null}
+          <ToastMessage
+            open={toastIsOpen}
+            handleClose={handleCloseToastMessage}
+            type={isBookMark ? "add" : "remove"}
+          />
         </div>
       )}
     </>

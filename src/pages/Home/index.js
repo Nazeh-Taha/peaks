@@ -92,13 +92,17 @@ function Home({ handleOpenArticle }) {
                     )}
                     key={news.id}
                     handleClick={() => handleOpenArticle(news.id)}
+                    type={news?.sectionId}
                   />
                 );
               } else {
                 return (
-                  <div onClick={() => handleOpenArticle(news.id)} key={news.id}>
-                    <TitleNewsCard cardTitle={news.webTitle} />
-                  </div>
+                  <TitleNewsCard
+                    cardTitle={news.webTitle}
+                    handleClick={() => handleOpenArticle(news.id)}
+                    key={news.id}
+                    type={news?.sectionId}
+                  />
                 );
               }
             })}
@@ -110,6 +114,7 @@ function Home({ handleOpenArticle }) {
                   cardHigh={"lg"}
                   cardTitle={news.webTitle}
                   cardImage={news?.fields?.thumbnail}
+                  type={news?.sectionId}
                 />
               </div>
             ))}
@@ -132,6 +137,7 @@ function Home({ handleOpenArticle }) {
                   0,
                   100
                 )}
+                type={news?.sectionId}
               />
             </div>
           ))}

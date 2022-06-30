@@ -8,13 +8,24 @@ import {
 export const useStyles = makeStyles(() => ({
   cardContainer: {
     backgroundColor: cardColor,
-    borderBottom: `3px solid ${greenBoard}`,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     minHeight: 250,
     position: "relative",
     cursor: "pointer",
+  },
+  otherTypeBoard: {
+    borderBottom: `4px solid ${greenBoard}`,
+  },
+  sportTypeBoard: {
+    borderBottom: `4px solid #D32F2F`,
+  },
+  cultureTypeBoard: {
+    borderBottom: `4px solid #FFCA28`,
+  },
+  LifeStyleTypeBoard: {
+    borderBottom: `4px solid #2196F3`,
   },
   fullImage: {
     width: "100%",

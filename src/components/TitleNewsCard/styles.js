@@ -9,9 +9,20 @@ export const useStyles = makeStyles(() => ({
   cardContainer: {
     height: 140,
     backgroundColor: titleCardColor,
-    borderBottom: `3px solid ${greenBoard}`,
     color: wightColor,
     padding: 10,
     cursor: "pointer",
+  },
+  otherTypeBoard: {
+    borderBottom: `4px solid ${greenBoard}`,
+  },
+  sportTypeBoard: {
+    borderBottom: `4px solid #D32F2F`,
+  },
+  cultureTypeBoard: {
+    borderBottom: `4px solid #FFCA28`,
+  },
+  LifestyleTypeBoard: {
+    borderBottom: `4px solid #2196F3`,
   },
 }));
