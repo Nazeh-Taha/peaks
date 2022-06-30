@@ -2,13 +2,12 @@ import { useReducer } from "react";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "setArticleData":
+    case "setBookmarksData":
       if (!action.error) {
         return {
           ...state,
-          article: action.payload.payload.results[0],
+          bookMarks: action.payload.payload.results,
           loading: false,
-          isBookMark: action.isBookMark,
         };
       } else {
         return {
@@ -16,22 +15,30 @@ const reducer = (state, action) => {
           loading: false,
         };
       }
-    case "addRemoveBookMark":
+    case "setOrderBy":
       return {
         ...state,
-        isBookMark: !state.isBookMark,
+        orderByValue: action.payload,
       };
-
+    case "resetLoader":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "offLoader":
+      return {
+        ...state,
+        loading: false,
+      };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
 };
 
-export const useArticleReducer = () => {
+export const useBookMarksReducer = () => {
   const [state, dispatch] = useReducer(reducer, {
-    article: { fields: {} },
+    bookMarks: [],
     loading: true,
-    isBookMark: false,
   });
   return [state, dispatch];
 };

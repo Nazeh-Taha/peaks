@@ -8,10 +8,12 @@ import TitleNewsCard from "../../components/TitleNewsCard";
 import { useStyles } from "./styles";
 import { useHomeReducer } from "./reducer";
 import { extractContent } from "../../utils/helpers";
+import { useCustomContext } from "../../App";
 
 function Home({ handleOpenArticle }) {
   const classes = useStyles();
   const [state, dispatch] = useHomeReducer();
+  const [, appDispatch] = useCustomContext();
 
   const {
     firstTopNews,
@@ -50,13 +52,20 @@ function Home({ handleOpenArticle }) {
       payload: event.target.value,
     });
   }
-
+  function handleGotoBookmarks() {
+    appDispatch({
+      type: "goToBookmarksPage",
+    });
+  }
   return (
     <>
       <div className={classes.titleHeader}>
         <h1>Top stories</h1>
         <div className={classes.flexBoxContainer}>
-          <BookMarkButton label="View BOOKMARK" active={true} />
+          <BookMarkButton
+            label="View BOOKMARK"
+            handleClick={handleGotoBookmarks}
+          />
           <SelectInput
             selectValue={orderByValue}
             handleChangeSelect={handleChangeSelect}

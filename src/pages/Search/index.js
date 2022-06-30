@@ -8,11 +8,12 @@ import { getHomeNews } from "../../api/home.api";
 import { extractContent } from "../../utils/helpers";
 import ImageNewsCard from "../../components/ImageNewsCard";
 import { useDebounce } from "../../utils/hooks";
+import BookMarkButton from "../../components/BookMarkButton";
 
 function Search({ handleOpenArticle }) {
   const classes = useStyles();
   const [state, dispatch] = useSearchReducer();
-  const [appState] = useCustomContext();
+  const [appState, appDispatch] = useCustomContext();
   const { loading, orderByValue, searchNews } = state;
 
   const debouncedSearchTerm = useDebounce(appState.searchText, 500);
@@ -21,6 +22,11 @@ function Search({ handleOpenArticle }) {
     dispatch({
       type: "setOrderBy",
       payload: event.target.value,
+    });
+  }
+  function handleGotoBookmarks() {
+    appDispatch({
+      type: "goToBookmarksPage",
     });
   }
   useEffect(() => {
@@ -47,6 +53,10 @@ function Search({ handleOpenArticle }) {
       <div className={classes.titleHeader}>
         <h1>Search results</h1>
         <div className={classes.flexBoxContainer}>
+          <BookMarkButton
+            label="View BOOKMARK"
+            handleClick={handleGotoBookmarks}
+          />
           <SelectInput
             selectValue={orderByValue}
             handleChangeSelect={handleChangeSelect}

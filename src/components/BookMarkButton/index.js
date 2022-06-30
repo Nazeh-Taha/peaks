@@ -4,12 +4,12 @@ import bookmarkOff from "../../assets/icons/bookmark-off.svg";
 
 function BookMarkButton(props) {
   const classes = useStyles();
-  const { label, active, handleClick } = props;
+  const { label, active = false, handleClick } = props;
 
   return (
     <button onClick={handleClick} className={classes.buttonContainer}>
       <div>
-        <img src={active ? bookmarkOn : bookmarkOff} alt={"logo"} />
+        <img src={active ? bookmarkOff : bookmarkOn} alt={"logo"} />
         {label}
       </div>
     </button>

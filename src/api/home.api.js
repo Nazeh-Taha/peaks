@@ -13,8 +13,3 @@ export const getHomeNews = async ({
       "|"
     )}&order-by=${orderBy}&q=${searchTerm}&show-fields=thumbnail,body&page=${page}&page-size=${size}&api-key=${urlKey}`,
   });
-
-export const getArticleById = async (id) =>
-  await endPointCallCreator({
-    url: `/search?show-elements=all&show-fields=thumbnail,body,headline&ids=${id}&api-key=${urlKey}`,
-  });

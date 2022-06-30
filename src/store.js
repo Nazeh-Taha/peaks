@@ -29,6 +29,11 @@ export function appReducer(state, action) {
         contentType: "article",
         articleId: action.payload,
       };
+    case "goToBookmarksPage":
+      return {
+        ...state,
+        contentType: "bookmarks",
+      };
     default:
       throw new Error();
   }
