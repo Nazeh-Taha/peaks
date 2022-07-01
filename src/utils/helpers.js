@@ -26,7 +26,7 @@ export async function endPointCallCreator({ url = "", method = "GET" } = {}) {
           loading: false,
           error: true,
           errorMessage: data.response.message,
-          payload: data.response,
+          payload: null,
         };
       }
     })

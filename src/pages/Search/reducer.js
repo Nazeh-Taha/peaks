@@ -6,9 +6,9 @@ const reducer = (state, action) => {
       if (!action.error) {
         return {
           ...state,
-          searchNews: action.payload.payload.results,
+          searchNews: action.payload.payload?.results || [],
           loading: false,
-          totalPages: action.payload.payload.pages,
+          totalPages: action.payload.payload?.pages || 0,
         };
       } else {
         return {
@@ -20,7 +20,10 @@ const reducer = (state, action) => {
       if (!action.error) {
         return {
           ...state,
-          searchNews: [...state.searchNews, ...action.payload.payload.results],
+          searchNews: [
+            ...state.searchNews,
+            ...(action.payload.payload?.results || []),
+          ],
           loadingMore: false,
         };
       } else {

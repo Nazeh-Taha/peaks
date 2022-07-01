@@ -6,7 +6,7 @@ const reducer = (state, action) => {
       if (!action.error) {
         return {
           ...state,
-          bookMarks: action.payload.payload.results,
+          bookMarks: action.payload.payload?.results || [],
           loading: false,
         };
       } else {

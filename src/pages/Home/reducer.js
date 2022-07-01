@@ -6,9 +6,9 @@ const reducer = (state, action) => {
       if (!action.error) {
         return {
           ...state,
-          firstTopNews: action.firstPayload.payload.results.slice(0, 5),
-          secondTopNews: action.firstPayload.payload.results.slice(5),
-          sportsNews: action.secondPayload.payload.results,
+          firstTopNews: action.firstPayload.payload?.results.slice(0, 5) || [],
+          secondTopNews: action.firstPayload.payload?.results.slice(5) || [],
+          sportsNews: action.secondPayload.payload?.results || [],
           firstSectionLoading: false,
           secondSectionLoading: false,
         };

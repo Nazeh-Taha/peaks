@@ -2,7 +2,6 @@
   "name": "the-peaks-task",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://content.guardianapis.com",
   "dependencies": {
     "@mui/styles": "^5.8.4",
     "@testing-library/jest-dom": "^5.16.4",
