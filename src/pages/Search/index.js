@@ -1,7 +1,7 @@
 import { useStyles } from "./styles";
 import { useCustomContext } from "../../App";
 import Loader from "../../components/Loader";
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useSearchReducer } from "./reducer";
 import SelectInput from "../../components/SelectInput";
 import { getHomeNews } from "../../api/home.api";
@@ -14,9 +14,29 @@ function Search({ handleOpenArticle }) {
   const classes = useStyles();
   const [state, dispatch] = useSearchReducer();
   const [appState, appDispatch] = useCustomContext();
-  const { loading, orderByValue, searchNews } = state;
+  const { loading, orderByValue, searchNews, loadingMore, page, totalPages } =
+    state;
 
   const debouncedSearchTerm = useDebounce(appState.searchText, 500);
+
+  const observer = useRef(null);
+  const prevSearchTerm = useRef(debouncedSearchTerm);
+  // get the last element
+  const lastArticle = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          dispatch({
+            type: "loadMorePage",
+          });
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [dispatch, loading]
+  );
 
   function handleChangeSelect(event) {
     dispatch({
@@ -29,24 +49,39 @@ function Search({ handleOpenArticle }) {
       type: "goToBookmarksPage",
     });
   }
+  console.log(totalPages, page);
+
+  useEffect(() => {
+    if (debouncedSearchTerm !== prevSearchTerm.current) {
+      dispatch({
+        type: "resetPage",
+      });
+    }
+  }, [debouncedSearchTerm, dispatch]);
+
   useEffect(() => {
     (async () => {
-      if (debouncedSearchTerm)
-        dispatch({
-          type: "resetLoader",
-        });
-      dispatch({
-        type: "setSearchData",
-        payload: await getHomeNews({
-          section: ["news"],
-          size: 15,
-          orderBy: orderByValue,
-          page: 1,
-          searchTerm: debouncedSearchTerm,
-        }),
-      });
+      if (debouncedSearchTerm) {
+        if (page === 1) {
+          dispatch({
+            type: "resetLoader",
+          });
+        }
+        if (page <= totalPages) {
+          dispatch({
+            type: page === 1 ? "setSearchData" : "setMoreData",
+            payload: await getHomeNews({
+              section: ["news"],
+              size: 15,
+              orderBy: orderByValue,
+              page,
+              searchTerm: debouncedSearchTerm,
+            }),
+          });
+        }
+      }
     })();
-  }, [debouncedSearchTerm, dispatch, orderByValue]);
+  }, [debouncedSearchTerm, dispatch, orderByValue, page, totalPages]);
 
   return (
     <>
@@ -67,8 +102,22 @@ function Search({ handleOpenArticle }) {
         <Loader />
       ) : (
         <section className={classes.searchResultContainer}>
-          {searchNews.map((news) => (
-            <div onClick={() => handleOpenArticle(news.id)} key={news.id}>
+          {searchNews.map((news, index) =>
+            searchNews.length === index + 1 ? (
+              <div ref={lastArticle} key={index}>
+                <ImageNewsCard
+                  cardHigh={"lg"}
+                  cardTitle={news.webTitle}
+                  cardImage={news?.fields?.thumbnail}
+                  cardDescription={extractContent(news?.fields?.body).slice(
+                    0,
+                    100
+                  )}
+                  type={news?.sectionId}
+                  handleClick={() => handleOpenArticle(news.id)}
+                />
+              </div>
+            ) : (
               <ImageNewsCard
                 cardHigh={"lg"}
                 cardTitle={news.webTitle}
@@ -78,11 +127,14 @@ function Search({ handleOpenArticle }) {
                   100
                 )}
                 type={news?.sectionId}
+                key={index}
+                handleClick={() => handleOpenArticle(news.id)}
               />
-            </div>
-          ))}
+            )
+          )}
         </section>
       )}
+      {loadingMore && <Loader />}
     </>
   );
 }
