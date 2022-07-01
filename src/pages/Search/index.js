@@ -81,7 +81,8 @@ function Search({ handleOpenArticle }) {
         }
       }
     })();
-  }, [debouncedSearchTerm, dispatch, orderByValue, page, totalPages]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearchTerm, dispatch, orderByValue, page]);
 
   return (
     <>

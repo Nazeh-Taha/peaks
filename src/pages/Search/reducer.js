@@ -8,7 +8,8 @@ const reducer = (state, action) => {
           ...state,
           searchNews: action.payload.payload?.results || [],
           loading: false,
-          totalPages: action.payload.payload?.pages || 0,
+          totalPages: action.payload.payload?.pages || 1,
+          loadingMore: false,
         };
       } else {
         return {
