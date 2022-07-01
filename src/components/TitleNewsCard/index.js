@@ -24,6 +24,8 @@ function TitleNewsCard({ cardTitle, handleClick, type }) {
     <div
       className={`${classes.cardContainer} ${handleBoardColor(type)}`}
       onClick={handleClick}
+      test-id={`${cardTitle}-card`}
+      data-testid="titleNewsCard-test-id"
     >
       <h5>{cardTitle}</h5>
     </div>
